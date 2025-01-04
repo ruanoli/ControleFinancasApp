@@ -1,0 +1,60 @@
+﻿@model FinancasApp.Presentation.Models.Account.AccountRegisterViewModel
+
+<div class="text-center">
+    <img src="~/img/imgFinancas1.png" width="350" height="200" />
+    <h3>Cadastro de Usuário</h3>
+</div>
+
+<div class="text-center text-success">
+    <h5>@TempData["MessageSuccess"]</h5>
+</div>
+
+
+<div class="text-center text-danger">
+    <h5>@TempData["MessageErro"]</h5>
+</div>
+
+@using (Html.BeginForm())
+{
+    <div class="mb-2">
+        <label><strong>Nome</strong></label>
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Digite seu nome" })
+    </div>
+    <div class="text-danger">
+        @Html.ValidationMessageFor(x => x.Name)
+    </div>
+
+    <div class="mb-2">
+        <label><strong>E-mail</strong></label>
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Digite seu e-mail" })
+    </div>
+    <div class="text-danger">
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+
+    <div class="mb-4">
+
+        <label><strong>Senha</strong></label>
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control", @placeholder = "Digite sua senha" })
+    </div>
+    <div class="text-danger">
+        @Html.ValidationMessageFor(x => x.Password)
+    </div>
+
+    <div class="mb-4">
+        <label><strong>Confirmar Senha</strong></label>
+        @Html.PasswordFor(x => x.CornfirmedPassword, new { @class = "form-control", @placeholder = "Confirme sua senha" })
+    </div>
+    <div class="text-danger">
+        @Html.ValidationMessageFor(x => x.CornfirmedPassword)
+    </div>
+
+    <div class="mb-2 text-center">
+        <input type="submit" class="btn btn-warning btn-block" value="Cadastrar" />
+    </div>
+
+    <div class="mb-2 text-center">
+        <a href="/Account/Login" style="text-decoration: none">Voltar</a>
+    </div>
+}
+

@@ -1,0 +1,82 @@
+﻿@model FinancasApp.Presentation.Models.Transaction.TransactionRegister
+
+<h4>Cadastro de Contas</h4>
+
+@using (Html.BeginForm())
+{
+    <form>
+        <div class="row mb-2">
+
+            <div class="col-md-4">
+                <label><strong>Nome da Conta</strong></label>
+                @Html.TextBoxFor(x => x.Name, new {@class = "form-control"})
+                <span class="text-danger">
+                    @Html.ValidationMessageFor(x => x.Name)
+                </span>
+            </div>
+
+            <div class="col-md-4">
+                <label><strong>Data da Conta</strong></label>
+                @Html.TextBoxFor(x => x.Date, new { @class = "form-control", @type = "date" })
+
+                <span class="text-danger">
+                    @Html.ValidationMessageFor(x => x.Date)
+                </span>
+            </div>
+
+            <div class="col-md-4">
+                <label><strong>Valor da Conta</strong></label>
+                @Html.TextBoxFor(x => x.Value, new { @class = "form-control"})
+                <span class="text-danger">
+                    @Html.ValidationMessageFor(x => x.Value)
+                </span>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-4">
+                <label><strong>Tipo da Conta</strong></label>
+                @Html.DropDownListFor(x => x.TypeId, ViewBag.TransactionTypes as List<SelectListItem>,
+                    "Escolha uma opção", new {@class = "form-select"})
+
+                <span class="text-danger">
+                    @Html.ValidationMessageFor(x => x.TypeId)
+                </span>
+            </div>
+
+            <div class="col-md-4">
+                <label><strong>Categorias</strong></label>
+                @Html.DropDownListFor(x => x.CategoryId, ViewBag.Categories as List<SelectListItem>,
+                         "Escolha uma opção", new { @class = "form-select" })
+                <span class="text-danger">
+                    @Html.ValidationMessageFor(x => x.CategoryId)
+                </span>
+            </div>
+
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-8">
+                <label><strong>Descrição</strong></label>
+                @Html.TextAreaFor(x => x.Description, new { @class = "form-control"})
+                <span class="text-danger">
+                    @Html.ValidationMessageFor(x => x.Description)
+                </span>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <input type="submit" class="btn btn-success" value="Cadastrar" />
+                <a href="/Transacton/Consult" class="btn btn-secondary">Consultar Contas</a>
+            </div>
+        </div>
+    </form>
+
+}
+
+<script src="maskUtils.js"></script>
+
+
+
+

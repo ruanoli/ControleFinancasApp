@@ -1,0 +1,16 @@
+﻿@{
+    var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
+
+    switch (controllerName)
+    {
+        case  "Account":
+            Layout = "~/Views/Shared/_AccountLayout.cshtml";
+            break;
+        
+        default: 
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+            break;
+      
+
+    }
+}

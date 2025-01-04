@@ -1,0 +1,17 @@
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Infra.Data\bin\Debug\net8.0\FinancasApp.Infra.Data.deps.json
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Infra.Data\bin\Debug\net8.0\FinancasApp.Infra.Data.runtimeconfig.json
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Infra.Data\bin\Debug\net8.0\FinancasApp.Infra.Data.dll
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Infra.Data\bin\Debug\net8.0\FinancasApp.Infra.Data.pdb
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Infra.Data\bin\Debug\net8.0\FinancasApp.Domain.dll
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Infra.Data\bin\Debug\net8.0\FinancasApp.Domain.pdb
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Infra.Data\obj\Debug\net8.0\FinancasApp.Infra.Data.csproj.AssemblyReference.cache
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Infra.Data\obj\Debug\net8.0\FinancasApp.Infra.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Infra.Data\obj\Debug\net8.0\FinancasApp.Infra.Data.AssemblyInfoInputs.cache
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Infra.Data\obj\Debug\net8.0\FinancasApp.Infra.Data.AssemblyInfo.cs
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Infra.Data\obj\Debug\net8.0\FinancasApp.Infra.Data.csproj.CoreCompileInputs.cache
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Infra.Data\obj\Debug\net8.0\Financas.AA788251.Up2Date
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Infra.Data\obj\Debug\net8.0\FinancasApp.Infra.Data.dll
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Infra.Data\obj\Debug\net8.0\refint\FinancasApp.Infra.Data.dll
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Infra.Data\obj\Debug\net8.0\FinancasApp.Infra.Data.pdb
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Infra.Data\obj\Debug\net8.0\FinancasApp.Infra.Data.genruntimeconfig.cache
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Infra.Data\obj\Debug\net8.0\ref\FinancasApp.Infra.Data.dll

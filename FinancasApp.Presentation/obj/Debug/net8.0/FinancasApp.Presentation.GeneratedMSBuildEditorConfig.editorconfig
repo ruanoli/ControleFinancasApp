@@ -1,0 +1,71 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = FinancasApp.Presentation
+build_property.RootNamespace = FinancasApp.Presentation
+build_property.ProjectDir = C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Presentation\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Presentation
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/ruan1/OneDrive/Área de Trabalho/Projetos/MVC/FinancasApp/FinancasApp.Presentation/Views/Account/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ruan1/OneDrive/Área de Trabalho/Projetos/MVC/FinancasApp/FinancasApp.Presentation/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ruan1/OneDrive/Área de Trabalho/Projetos/MVC/FinancasApp/FinancasApp.Presentation/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ruan1/OneDrive/Área de Trabalho/Projetos/MVC/FinancasApp/FinancasApp.Presentation/Views/Category/Consult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQ29uc3VsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ruan1/OneDrive/Área de Trabalho/Projetos/MVC/FinancasApp/FinancasApp.Presentation/Views/Category/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ruan1/OneDrive/Área de Trabalho/Projetos/MVC/FinancasApp/FinancasApp.Presentation/Views/Category/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ruan1/OneDrive/Área de Trabalho/Projetos/MVC/FinancasApp/FinancasApp.Presentation/Views/Home/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ruan1/OneDrive/Área de Trabalho/Projetos/MVC/FinancasApp/FinancasApp.Presentation/Views/Shared/_AccountLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BY2NvdW50TGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ruan1/OneDrive/Área de Trabalho/Projetos/MVC/FinancasApp/FinancasApp.Presentation/Views/Shared/_AdminLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ruan1/OneDrive/Área de Trabalho/Projetos/MVC/FinancasApp/FinancasApp.Presentation/Views/Transacton/Consult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY3RvblxDb25zdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ruan1/OneDrive/Área de Trabalho/Projetos/MVC/FinancasApp/FinancasApp.Presentation/Views/Transacton/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY3RvblxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ruan1/OneDrive/Área de Trabalho/Projetos/MVC/FinancasApp/FinancasApp.Presentation/Views/Transacton/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbnNhY3RvblxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ruan1/OneDrive/Área de Trabalho/Projetos/MVC/FinancasApp/FinancasApp.Presentation/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

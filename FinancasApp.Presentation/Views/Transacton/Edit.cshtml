@@ -1,0 +1,70 @@
+﻿
+<div>
+    <h4>Didição de Movimentações</h4>
+
+    @*     @using (Html.BeginForm())
+    { *@
+    <form>
+        <div class="row mb-2">
+
+            <div class="col">
+                <label>Nome da Conta</label>
+                @* @Html.TextBoxFor(x => x.) *@
+                <input type="text" class="form-control" />
+            </div>
+
+            <div class="col">
+                <label>Data da Conta</label>
+                @* @Html.TextBoxFor(x => x.) *@
+                <input type="date" class="form-control" />
+            </div>
+
+            <div class="col">
+                <label>Valor da Conta</label>
+                @* @Html.TextBoxFor(x => x.) *@
+                <input type="text" class="form-control" />
+            </div>
+
+            <div class="col">
+                <label>Tipo da Conta</label>
+                @* @Html.TextBoxFor(x => x.) *@
+                <div>
+                    <input type="radio" class="form-control" /> Conta a Receber
+                </div>
+
+                <div>
+                    <input type="radio" class="form-control" /> Conta a Pagar
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+
+            <div class="col">
+                <label>Categoria</label>
+                @* @Html.TextBoxFor(x => x.) *@
+                <select class="form-select">
+                    <option value="">Escolha uma opção</option>
+                </select>
+            </div>
+
+            <div class="col">
+                <label>Descrição</label>
+                @* @Html.TextBoxFor(x => x.) *@
+                <textarea class="form-control"> </textarea>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col">
+                <input type="submit" class="btn btn-warning btn-block" value="Alterar" />
+                <a href="Transaction/Get" class="btn btn-light">Consultar Movimentações</a>
+            </div>
+        </div>
+    </form>
+
+    @* } *@
+
+</div>
+
+

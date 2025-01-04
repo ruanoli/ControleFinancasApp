@@ -1,0 +1,31 @@
+﻿@model FinancasApp.Presentation.Models.Category.CategoryEdit
+
+<div class="mb-3">
+    <h4>
+        Edição de Categoria
+    </h4>
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x => x.Id)
+    @Html.HiddenFor(x => x.UserId)
+
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <label><strong>Nome da Categoria</strong></label>
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            <span class="text-danger">
+                @Html.ValidationMessageFor(x => x.Name)
+            </span>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-success" value="Editar" />
+            <a href="/Category/Consult" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+}

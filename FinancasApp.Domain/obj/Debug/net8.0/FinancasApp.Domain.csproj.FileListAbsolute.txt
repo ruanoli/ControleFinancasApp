@@ -1,0 +1,12 @@
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Domain\bin\Debug\net8.0\FinancasApp.Domain.deps.json
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Domain\bin\Debug\net8.0\FinancasApp.Domain.dll
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Domain\bin\Debug\net8.0\FinancasApp.Domain.pdb
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Domain\obj\Debug\net8.0\FinancasApp.Domain.csproj.AssemblyReference.cache
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Domain\obj\Debug\net8.0\FinancasApp.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Domain\obj\Debug\net8.0\FinancasApp.Domain.AssemblyInfoInputs.cache
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Domain\obj\Debug\net8.0\FinancasApp.Domain.AssemblyInfo.cs
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Domain\obj\Debug\net8.0\FinancasApp.Domain.csproj.CoreCompileInputs.cache
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Domain\obj\Debug\net8.0\FinancasApp.Domain.dll
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Domain\obj\Debug\net8.0\refint\FinancasApp.Domain.dll
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Domain\obj\Debug\net8.0\FinancasApp.Domain.pdb
+C:\Users\ruan1\OneDrive\Área de Trabalho\Projetos\MVC\FinancasApp\FinancasApp.Domain\obj\Debug\net8.0\ref\FinancasApp.Domain.dll

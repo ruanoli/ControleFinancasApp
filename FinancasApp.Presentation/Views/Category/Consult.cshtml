@@ -1,0 +1,67 @@
+﻿@model List<FinancasApp.Presentation.Models.Category.CategoryConsult>
+
+
+
+<table id="consultCategory" class="table table-hover table-bordered table-striped">
+    <thead class="table-light">
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col" class="action-buttons">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><strong>@item.Name</strong></td>
+                <td style="text-align: right;">
+                    <a class="btn btn-primary btn-sm" href="/Category/Edit?idCategory=@item.Id">Editar</a>
+                    <a class="btn btn-danger btn-sm" href="/Category/Delete?idCategory=@item.Id" onclick="return confirm('Deseja realmente excluir esta categoria?')">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="row mb-2">
+    <div class="col-md-12">
+        <a class="btn btn-warning btn-sm" href="/Category/Register">Inserir Nova Categoria</a>
+    </div>
+</div>
+
+@section styles {
+    <link href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" rel="stylesheet">
+
+    <style>
+        /* Define larguras iguais para as colunas */
+        .table th, .table td {
+            width: 50%; /* Divide a largura igualmente entre as colunas */
+            vertical-align: middle; /* Centraliza o conteúdo verticalmente */
+            padding: 12px; /* Espaçamento interno uniforme */
+        }
+
+        /* Estiliza os botões */
+        .btn {
+            margin-left: 5px; /* Espaçamento entre botões */
+        }
+
+
+    </style>
+}
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $("#consultCategory").DataTable({
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json"
+                }
+            });
+
+        });
+    </script>
+}
