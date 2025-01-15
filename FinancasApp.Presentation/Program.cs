@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 #region Ativa a Política de autenticação (Cookie)
 
 builder.Services.Configure<CookiePolicyOptions>(
@@ -25,8 +26,8 @@ builder.Services.AddTransient<IProfileRepository, ProfileRepository>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<ITransactionRepository, TransactionRepository>();
 
-//builder.Services.AddDbContext<DataContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 #endregion
 

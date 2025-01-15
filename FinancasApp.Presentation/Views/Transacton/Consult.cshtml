@@ -11,7 +11,7 @@
 {
     <div class="row mb-2">
         <div class="col-md-3">
-            @Html.TextBoxFor(x => x.InitialDate, new { @class = "form-control", @type = "date"})
+            @Html.TextBoxFor(x => x.InitialDate, new { @class = "form-control mb-4", @type = "date"})
 
             <span class="text-danger">
                 @Html.ValidationMessageFor(x => x.InitialDate)
@@ -19,7 +19,7 @@
         </div>
 
         <div class="col-md-3">
-            @Html.TextBoxFor(x => x.FinalDate, new { @class = "form-control", @type = "date" })
+            @Html.TextBoxFor(x => x.FinalDate, new { @class = "form-control mb-4", @type = "date" })
 
             <span class="text-danger">
                 @Html.ValidationMessageFor(x => x.FinalDate)
@@ -32,38 +32,44 @@
     </div>
 }
 
-<div class="table-responsive">
-    <table id="consultTransaction" class="table table-sm table-hover table-striped">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Data</th>
-                <th>Valor</th>
-                <th>Categoria</th>
-                <th>Tipo</th>
-                <th>Observações</th>
-                <th width="140">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
+@if(Model != null && Model.ResultConsults.Count > 0)
+{
+    <div class="table-responsive">
+        <table id="consultTransaction" class="table table-sm table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Data</th>
+                    <th>Valor</th>
+                    <th>Categoria</th>
+                    <th>Tipo</th>
+                    <th width="140">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
 
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <a class="btn btn-outline-primary btn-sm" href="/Transaction/Edit?idTransaction=">Editar</a>
-                    <a class="btn btn-outline-danger btn-sm" href="/Transaction/Delete?idTransaction=" onclick="return confirm('Deseja realmente excluir esta conta?')">Excluir</a>
-                </td>
-            </tr>
+                @foreach(var item in Model.ResultConsults)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Data.Value.ToString("dd/MM/yyyy")</td>
+                        <td>@(decimal.Parse(item.Value).ToString("c"))</td>
+                        <td>@item.Category</td>
+                        <td>@item.Type</td>
+                        <td>
+                            <a class="btn btn-outline-primary btn-sm" href="/Transacton/Edit?idTransaction=@item.Id">Editar</a>
+                            <a class="btn btn-outline-danger btn-sm" href="/Transacton/Delete?idTransaction=@item.Id" onclick="return confirm('Deseja realmente excluir esta conta?')">Excluir</a>
+                        </td>
+                    </tr>
+                }
+                
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-</div>
+    </div>
+}
+
 
 @section styles {
     <link href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" rel="stylesheet">

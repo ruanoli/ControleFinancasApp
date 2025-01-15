@@ -13,5 +13,7 @@ namespace FinancasApp.Presentation.Models.Transaction
         
         [Required(ErrorMessage = "Campo obrigatório.")]
         public DateTime? FinalDate { get; set; }
+
+        public List<TransactionResultConsult>? ResultConsults { get; set; }
     }
 }

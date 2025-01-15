@@ -1,70 +1,156 @@
-﻿
-<div>
-    <h4>Didição de Movimentações</h4>
+﻿@model FinancasApp.Presentation.Models.Transaction.TransactionEdit
 
-    @*     @using (Html.BeginForm())
-    { *@
+<h4>Edição de Contas</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x => x.Id)
+
     <form>
         <div class="row mb-2">
 
-            <div class="col">
-                <label>Nome da Conta</label>
-                @* @Html.TextBoxFor(x => x.) *@
-                <input type="text" class="form-control" />
+            <div class="col-md-4">
+                <label><strong>Nome da Conta</strong></label>
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                <span class="text-danger">
+                    @Html.ValidationMessageFor(x => x.Name)
+                </span>
             </div>
 
-            <div class="col">
-                <label>Data da Conta</label>
-                @* @Html.TextBoxFor(x => x.) *@
-                <input type="date" class="form-control" />
+            <div class="col-md-4">
+                <label><strong>Data da Conta</strong></label>
+                @Html.TextBoxFor(x => x.Date, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+
+                <span class="text-danger">
+                    @Html.ValidationMessageFor(x => x.Date)
+                </span>
             </div>
 
-            <div class="col">
-                <label>Valor da Conta</label>
-                @* @Html.TextBoxFor(x => x.) *@
-                <input type="text" class="form-control" />
-            </div>
-
-            <div class="col">
-                <label>Tipo da Conta</label>
-                @* @Html.TextBoxFor(x => x.) *@
-                <div>
-                    <input type="radio" class="form-control" /> Conta a Receber
-                </div>
-
-                <div>
-                    <input type="radio" class="form-control" /> Conta a Pagar
-                </div>
+            <div class="col-md-4">
+                <label><strong>Valor da Conta</strong></label>
+                @Html.TextBoxFor(x => x.Value, new { @class = "money form-control" })
+                <span class="text-danger">
+                    @Html.ValidationMessageFor(x => x.Value)
+                </span>
             </div>
         </div>
 
         <div class="row mb-2">
+            <div class="col-md-4">
+                <label><strong>Tipo da Conta</strong></label>
+                @Html.DropDownListFor(x => x.TypeId, ViewBag.TransactionTypes as List<SelectListItem>,
+                         "Escolha uma opção", new { @class = "form-select" })
 
-            <div class="col">
-                <label>Categoria</label>
-                @* @Html.TextBoxFor(x => x.) *@
-                <select class="form-select">
-                    <option value="">Escolha uma opção</option>
-                </select>
+                <span class="text-danger">
+                    @Html.ValidationMessageFor(x => x.TypeId)
+                </span>
             </div>
 
-            <div class="col">
-                <label>Descrição</label>
-                @* @Html.TextBoxFor(x => x.) *@
-                <textarea class="form-control"> </textarea>
+            <div class="col-md-4">
+                <label><strong>Categorias</strong></label>
+                @Html.DropDownListFor(x => x.CategoryId, ViewBag.Categories as List<SelectListItem>,
+                         "Escolha uma opção", new { @class = "form-select" })
+                <span class="text-danger">
+                    @Html.ValidationMessageFor(x => x.CategoryId)
+                </span>
+            </div>
+
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-8">
+                <label><strong>Descrição</strong></label>
+                @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+                <span class="text-danger">
+                    @Html.ValidationMessageFor(x => x.Description)
+                </span>
             </div>
         </div>
 
         <div class="row mb-2">
-            <div class="col">
-                <input type="submit" class="btn btn-warning btn-block" value="Alterar" />
-                <a href="Transaction/Get" class="btn btn-light">Consultar Movimentações</a>
+            <div class="col-md-12">
+                <input type="submit" class="btn btn-success" value="Confirmar" />
+                <a href="/Transacton/Consult" class="btn btn-secondary">Consultar Contas</a>
             </div>
         </div>
     </form>
 
-    @* } *@
+}
 
-</div>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            let hasEdited = false;
+
+            // Função para formatar o valor como moeda
+            function formatCurrency(input) {
+                let value = $(input).val();
+
+                // Remove qualquer caractere que não seja número ou vírgula
+                value = value.replace(/[^\d,]/g, '');
+
+                // Substitui a vírgula por um ponto para a conversão correta
+                value = value.replace(',', '.');
+
+                // Converte para número decimal
+                let decimalValue = parseFloat(value);
+
+                // Verifica se a conversão resultou em um número válido
+                if (!isNaN(decimalValue)) {
+                    // Formata para duas casas decimais e substitui ponto por vírgula
+                    value = decimalValue.toFixed(2).toString().replace('.', ',');
+                } else {
+                    value = '0,00'; // Valor padrão caso a conversão falhe
+                }
+
+                // Adiciona o prefixo "R$"
+                $(input).val('R$ ' + value);
+            }
+
+            // Aplica a máscara nos inputs com a classe "money"
+            $('.money').on('blur', function () {
+                formatCurrency(this);
+            });
+
+            // Limpa o campo no primeiro input após o foco
+            $('.money').on('focus', function () {
+                if (!hasEdited) {
+                    $(this).val('');
+                    hasEdited = true;
+                }
+            });
+
+            // Permite apenas números e vírgula durante a digitação
+            $('.money').on('input', function () {
+                let value = $(this).val();
+                $(this).val(value.replace(/[^\d,]/g, ''));
+            });
+
+            // Reseta a flag quando o usuário sai do campo
+            $('.money').on('blur', function () {
+                hasEdited = false;
+            });
+
+            function removeCurrencyFormat(input) {
+                let value = $(input).val();
+
+                // Remove o prefixo "R$" e converte vírgula para ponto
+                value = value.replace(/[^\d,]/g, '').replace(',', '.');
+
+                // Atualiza o campo com o valor não formatado
+                $(input).val(value);
+            }
+
+            // Ao submeter o formulário, garante que o valor seja enviado como número decimal
+            $('form').on('submit', function () {
+                $('.money').each(function () {
+                    removeCurrencyFormat(this);
+                });
+            });
+        });
+    </script>
+
+}
+
 
 

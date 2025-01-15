@@ -26,7 +26,7 @@
 
             <div class="col-md-4">
                 <label><strong>Valor da Conta</strong></label>
-                @Html.TextBoxFor(x => x.Value, new { @class = "form-control"})
+                @Html.TextBoxFor(x => x.Value, new { @class = "money form-control"})
                 <span class="text-danger">
                     @Html.ValidationMessageFor(x => x.Value)
                 </span>
@@ -75,8 +75,80 @@
 
 }
 
-@* <script src="maskUtils.js"></script>
- *@
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            let hasEdited = false;
+
+            // Função para formatar o valor como moeda
+            function formatCurrency(input) {
+                let value = $(input).val();
+
+                // Remove qualquer caractere que não seja número ou vírgula
+                value = value.replace(/[^\d,]/g, '');
+
+                // Substitui a vírgula por um ponto para a conversão correta
+                value = value.replace(',', '.');
+
+                // Converte para número decimal
+                let decimalValue = parseFloat(value);
+
+                // Verifica se a conversão resultou em um número válido
+                if (!isNaN(decimalValue)) {
+                    // Formata para duas casas decimais e substitui ponto por vírgula
+                    value = decimalValue.toFixed(2).toString().replace('.', ',');
+                } else {
+                    value = '0,00'; // Valor padrão caso a conversão falhe
+                }
+
+                // Adiciona o prefixo "R$"
+                $(input).val('R$ ' + value);
+            }
+
+            // Aplica a máscara nos inputs com a classe "money"
+            $('.money').on('blur', function () {
+                formatCurrency(this);
+            });
+
+            // Limpa o campo no primeiro input após o foco
+            $('.money').on('focus', function () {
+                if (!hasEdited) {
+                    $(this).val('');
+                    hasEdited = true;
+                }
+            });
+
+            // Permite apenas números e vírgula durante a digitação
+            $('.money').on('input', function () {
+                let value = $(this).val();
+                $(this).val(value.replace(/[^\d,]/g, ''));
+            });
+
+            // Reseta a flag quando o usuário sai do campo
+            $('.money').on('blur', function () {
+                hasEdited = false;
+            });
+
+            function removeCurrencyFormat(input) {
+                let value = $(input).val();
+
+                // Remove o prefixo "R$" e converte vírgula para ponto
+                value = value.replace(/[^\d,]/g, '').replace(',', '.');
+
+                // Atualiza o campo com o valor não formatado
+                $(input).val(value);
+            }
+
+            // Ao submeter o formulário, garante que o valor seja enviado como número decimal
+            $('form').on('submit', function () {
+                $('.money').each(function () {
+                    removeCurrencyFormat(this);
+                });
+            });
+        });
+    </script>
+
+}
 
 
 

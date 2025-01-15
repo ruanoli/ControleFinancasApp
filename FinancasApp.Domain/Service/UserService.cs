@@ -29,7 +29,7 @@ namespace FinancasApp.Domain.Service
                 throw new ArgumentException("E-mail já cadastrado.");
 
             user.Password = Sha1Helper.ComputeSHA1Hash(user.Password);
-            user.ProfileId = _profileRepository.GetProfileByName("USER_ROLE").Id;
+            user.ProfileId = _profileRepository.GetProfileByName("cc").Id;
 
             _userRepository.Add(user);
         }

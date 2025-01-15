@@ -26,11 +26,147 @@ namespace FinancasApp.Presentation.Controllers
             return View();
         }
 
-        public IActionResult Edit()
+        [HttpPost]
+        public IActionResult Consult(TransactionConsult viewModel)
         {
+
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors)
+                                               .Select(e => e.ErrorMessage)
+                                               .ToList();
+                foreach (var error in errors)
+                {
+                    // Log erros para depuração              
+                }
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var userAuth = JsonConvert.DeserializeObject<User>(User.Identity.Name);
+                    var transaction = _transactionRepository.GetTransactionByDateAndUser(viewModel.InitialDate.Value, viewModel.FinalDate.Value, userAuth.Id);
+                    viewModel.ResultConsults = new List<TransactionResultConsult>();
+
+                    if (transaction.Count > 0)
+                    {
+                        foreach (var item in transaction)
+                        {
+                            viewModel.ResultConsults.Add(
+                                new TransactionResultConsult()
+                                {
+                                    Id = item.Id,
+                                    Name = item.Name,
+                                    Category = item.Category.Name,
+                                    Data = item.DataTransaction,
+                                    Type = item.Type.ToString(),
+                                    Value = item.Value.ToString()
+
+                                }
+                             );
+                        }
+                    }
+                    else
+                    {
+                        TempData["MessageAlert"] = "Não há contas registradas nesse período.";
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    TempData["MessageError"] = ex.Message;
+                }
+            }
+
+
+            return View(viewModel);
+        }
+
+        public IActionResult Edit(Guid idTransaction)
+        {
+            var transaction = _transactionRepository.GetById(idTransaction);
+            var transactionViewModel = new TransactionEdit();
+
+            transactionViewModel.Id = transaction.Id;
+            transactionViewModel.Name = transaction.Name;
+            transactionViewModel.Value = transaction.Value.ToString("c");
+            transactionViewModel.Date = transaction.DataTransaction;
+            transactionViewModel.Description = transaction.Description;
+            transactionViewModel.CategoryId = transaction.CategoryId;
+            transactionViewModel.TypeId = (int)transaction.Type;
+
+            ViewBag.Categories = GetCategories();
+            ViewBag.TransactionTypes = Enum.GetValues(typeof(TransactionType))
+                .Cast<TransactionType>()
+                .Select(e => new SelectListItem
+                {
+                    Value = ((int)e).ToString(),
+                    Text = e.ToString()
+                }).ToList();
+
+            return View(transactionViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(TransactionEdit viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var transaction = _transactionRepository.GetById(viewModel.Id);
+
+                    if(transaction != null)
+                    {
+                        transaction.Value = viewModel.Value == null ? default(decimal) : decimal.Parse(viewModel.Value);
+                        transaction.CategoryId = viewModel.CategoryId.Value;
+                        transaction.DataTransaction = viewModel.Date.Value;
+                        transaction.Description = viewModel.Description;
+                        transaction.Name = viewModel.Name;
+                        transaction.Type = (TransactionType)viewModel.TypeId;
+
+                        _transactionRepository.Update(transaction);
+
+                        TempData["MessageSuccess"] = $"Conta {transaction.Name} editada com Sucesso!";
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    TempData["MessageError"] = ex.Message;
+                }
+            }
+
+            ViewBag.Categories = GetCategories();
+            ViewBag.TransactionTypes = Enum.GetValues(typeof(TransactionType))
+                .Cast<TransactionType>()
+                .Select(e => new SelectListItem
+                {
+                    Value = ((int)e).ToString(),
+                    Text = e.ToString()
+                }).ToList();
+
             return View();
         }
 
+        public IActionResult Delete(Guid idTransaction)
+        {
+            try
+            {
+                var transaction = _transactionRepository.GetById(idTransaction);
+
+                if (transaction != null)
+                    _transactionRepository.Delete(transaction);
+
+                TempData["MessageSuccess"] = $"Conta {transaction.Name} excluída com Sucesso!";
+            }
+            catch (Exception ex)
+            {
+                TempData["MessageError"] = ex.Message;
+            }
+            return RedirectToAction("Consult", "Transacton");
+        }
 
         public IActionResult Register()
         {
@@ -50,11 +186,22 @@ namespace FinancasApp.Presentation.Controllers
         [HttpPost]
         public IActionResult Register(TransactionRegister viewModel)
         {
+            //if (!ModelState.IsValid)
+            //{
+            //    var errors = ModelState.Values.SelectMany(v => v.Errors)
+            //                                   .Select(e => e.ErrorMessage)
+            //                                   .ToList();
+            //    foreach (var error in errors)
+            //    {
+            //        // Log erros para depuração              
+            //    }
+            //}
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var usuarioAuth = JsonConvert.DeserializeObject<User>(User.Identity.Name);
+                    var userAuth = JsonConvert.DeserializeObject<User>(User.Identity.Name);
                     var transaction = new Transaction()
                     {
                         Id = Guid.NewGuid(),
@@ -63,13 +210,13 @@ namespace FinancasApp.Presentation.Controllers
                         Description = viewModel.Description,
                         DataTransaction = viewModel.Date == null ? default(DateTime) : viewModel.Date.Value,
                         Type = (TransactionType)viewModel.TypeId,
-                        UserId = usuarioAuth.Id,
-                        Value = viewModel.Value
+                        UserId = userAuth.Id,
+                        Value = viewModel.Value == null ? 0 : decimal.Parse(viewModel.Value)
                     };
 
-                    ModelState.Clear();
                     _transactionRepository.Add(transaction);
                     TempData["MessageSuccess"] = $"Conta {transaction.Name} cadastrada com Sucesso!";
+                    ModelState.Clear();
 
                 }
                 catch (Exception ex)

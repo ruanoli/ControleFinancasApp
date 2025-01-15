@@ -10,49 +10,51 @@ namespace FinancasApp.Infra.Data.Repositories
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
+        private readonly DataContext _dataContext;
+
+        public BaseRepository(DataContext dataContext)
+        {
+            _dataContext = dataContext;
+        }
+
         public void Add(TEntity entity)
         {
-            using (var dataContext = new DataContext())
-            {
-                dataContext.Add(entity);
-                dataContext.SaveChanges();
-            }
+
+            _dataContext.Add(entity);
+            _dataContext.SaveChanges();
+
         }
 
         public void Update(TEntity entity)
         {
-            using (var dataContext = new DataContext())
-            {
-                dataContext.Update(entity);
-                dataContext.SaveChanges();
 
-            }
+            _dataContext.Update(entity);
+            _dataContext.SaveChanges();
+
+
         }
 
         public void Delete(TEntity entity)
         {
-            using (var dataContext = new DataContext())
-            {
-                dataContext.Remove(entity);
-                dataContext.SaveChanges();
 
-            }
+            _dataContext.Remove(entity);
+            _dataContext.SaveChanges();
+
+
         }
 
         public IList<TEntity> GetAll()
         {
-            using(var dataContext = new DataContext())
-            {
-                return dataContext.Set<TEntity>().ToList();
-            }
+
+            return _dataContext.Set<TEntity>().ToList();
+
         }
 
         public TEntity GetById(Guid id)
         {
-            using(var dataContext = new DataContext())
-            {
-                return dataContext.Set<TEntity>().Find(id);
-            }
+
+            return _dataContext.Set<TEntity>().Find(id);
+
         }
     }
 }

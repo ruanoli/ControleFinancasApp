@@ -12,27 +12,32 @@ namespace FinancasApp.Infra.Data.Repositories
 {
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
+        private readonly DataContext _dataContext;
+
+        public UserRepository(DataContext dataContext) : base(dataContext)
+        {
+            _dataContext = dataContext;
+        }
+
         public User? GetUserByEmail(string email)
         {
-            using (var datacContext = new DataContext())
-            {
-                return datacContext.Set<User>().Where(x => x.Email == email)
-                      .Include(x => x.Profile)
-                      .FirstOrDefault();
-            }
+
+            return _dataContext.Set<User>().Where(x => x.Email == email)
+                  .Include(x => x.Profile)
+                  .FirstOrDefault();
+
         }
 
         public User? GetUserByEmailAndPassword(string email, string password)
         {
-            using (var datacContext = new DataContext())
-            {
-                return datacContext.Set<User>().Where(x => 
-                    x.Email == email &&
-                    x.Password == password)
-                    .Include(x => x.Profile)
-                    .FirstOrDefault();
-                        }
+
+            return _dataContext.Set<User>().Where(x =>
+                x.Email == email &&
+                x.Password == password)
+                .Include(x => x.Profile)
+                .FirstOrDefault();
         }
+
 
     }
 }

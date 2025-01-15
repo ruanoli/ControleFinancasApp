@@ -2,3 +2,77 @@
     <h5>Dashboard Principal</h5>
     <p>Sistema de gerenciamento de despesas.</p>
 </div>
+
+<div class="row mb-2">
+    <div class="col-md-6">
+        <div id="pie-chart"></div>
+    </div>
+
+    <div class="col-md-6">
+        <div id="bar-chart"></div>
+    </div>
+</div>
+
+@section scripts 
+{
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+    <script>
+        // Gráfico de Pizza
+        Highcharts.chart('pie-chart', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Distribuição de Frutas'
+            },
+            series: [{
+                name: 'Quantidade',
+                colorByPoint: true,
+                data: [{
+                    name: 'Maçãs',
+                    y: 61.41
+                }, {
+                    name: 'Laranjas',
+                    y: 11.84
+                }, {
+                    name: 'Peras',
+                    y: 10.85
+                }, {
+                    name: 'Uvas',
+                    y: 4.67
+                }, {
+                    name: 'Outros',
+                    y: 10.23
+                }]
+            }]
+        });
+
+        // Gráfico de Barras
+        Highcharts.chart('bar-chart', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Vendas por Produto'
+            },
+            xAxis: {
+                categories: ['Produto A', 'Produto B', 'Produto C', 'Produto D']
+            },
+            yAxis: {
+                title: {
+                    text: 'Quantidade Vendida'
+                }
+            },
+            series: [{
+                name: '2023',
+                data: [107, 31, 635, 203]
+            }, {
+                name: '2024',
+                data: [133, 156, 947, 408]
+            }]
+        });
+    </script>
+}

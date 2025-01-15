@@ -1,4 +1,7 @@
-﻿using FinancasApp.Domain.Interfaces.Services;
+﻿using Bogus;
+using FinancasApp.Domain.Helpers;
+using FinancasApp.Domain.Interfaces.Repositories;
+using FinancasApp.Domain.Interfaces.Services;
 using FinancasApp.Domain.Models;
 using FinancasApp.Presentation.Models.Account;
 using Microsoft.AspNetCore.Authentication;
@@ -12,9 +15,11 @@ namespace FinancasApp.Presentation.Controllers
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
+        private readonly IUserRepository _userRepository;
 
-        public AccountController(IUserService userService)
+        public AccountController(IUserService userService, IUserRepository userRepository)
         {
+            _userRepository = userRepository;
             _userService = userService;
         }
 
@@ -104,6 +109,44 @@ namespace FinancasApp.Presentation.Controllers
         [HttpPost]
         public IActionResult ForgotPassword(AccountForgotPasswordViewModel viewModel)
         {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var user = _userRepository.GetUserByEmail(viewModel.Email);
+
+                    if (user != null)
+                    {
+                        Faker faker = new Faker();
+                        var password = $"@{faker.Internet.Password(8)}{new Random().Next(999)}";
+
+                        var emailMessageModel = new EmailMessage()
+                        {
+                            EmailRecipient = viewModel.Email,
+                            Subject = "Recuperação de senha do Sistema de Gerenciamento de Contas.",
+                            Body = $"Nova senha gerada: {password}"
+                        };
+
+                        EmailMessageHelper.Send(emailMessageModel);
+
+                        user.Password = Sha1Helper.ComputeSHA1Hash(password);
+
+                        _userRepository.Update(user);
+                        TempData["MessageSuccess"] = $"Senha enviada para o email {viewModel.Email} com sucesso!";
+
+                    }
+                    else
+                    {
+                        TempData["MessageErro"] = "E-mail não encontado. Por favor, verifique se o e-mail digitado está correto.";
+
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    TempData["MessageErro"] = ex.Message;
+                }
+            }
             return View();
         }
 

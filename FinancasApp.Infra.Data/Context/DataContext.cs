@@ -10,10 +10,14 @@ namespace FinancasApp.Infra.Data.Context
 {
     public class DataContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {   
-            //conexão com o banco
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=financasAppDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{   
+        //    //conexão com o banco
+        //    optionsBuilder.UseSqlServer("");
+        //}
+
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
+        {
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

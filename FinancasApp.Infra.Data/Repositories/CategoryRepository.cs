@@ -11,15 +11,21 @@ namespace FinancasApp.Infra.Data.Repositories
 {
     public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
     {
+        private readonly DataContext _dataContext;
+
+        public CategoryRepository(DataContext dataContext) : base(dataContext)
+        {
+            _dataContext = dataContext;
+        }
+
         public IList<Category> GetCategoryByUser(Guid userId)
         {
-            using (var dataContext = new DataContext())
-            {
-                return dataContext.Set<Category>()
+
+                return _dataContext.Set<Category>()
                     .Where(x => x.UserId == userId)
                     .ToList();
 
-            }
+            
         }
     }
 }

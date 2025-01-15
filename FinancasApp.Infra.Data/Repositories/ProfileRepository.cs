@@ -11,13 +11,18 @@ namespace FinancasApp.Infra.Data.Repositories
 {
     public class ProfileRepository : BaseRepository<Profile>, IProfileRepository
     {
- 
+        private readonly DataContext _dataContext;
+
+        public ProfileRepository(DataContext dataContext) : base(dataContext)
+        {
+            _dataContext = dataContext;
+        }
+
         public Profile GetProfileByName(string name)
         {
-            using (var dataContext = new DataContext())
-            {
-                return dataContext.Set<Profile>().Where(x => x.Name == name).FirstOrDefault();
-            }
+
+                return _dataContext.Set<Profile>().Where(x => x.Name == name).FirstOrDefault();
+            
         }
     }
 }
