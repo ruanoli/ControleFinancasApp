@@ -36,7 +36,7 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-#region Evita voltar a página após deslogar
+#region Evita que o navegador guarde cache da página
 app.Use(async (context, next) =>
 {
     context.Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";

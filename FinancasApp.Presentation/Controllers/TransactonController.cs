@@ -1,4 +1,5 @@
-﻿using FinancasApp.Domain.Interfaces.Repositories;
+﻿using Bogus.DataSets;
+using FinancasApp.Domain.Interfaces.Repositories;
 using FinancasApp.Domain.Models;
 using FinancasApp.Domain.Models.Enums;
 using FinancasApp.Presentation.Models.Transaction;
@@ -23,7 +24,33 @@ namespace FinancasApp.Presentation.Controllers
 
         public IActionResult Consult()
         {
-            return View();
+            var transactionViewModel = new TransactionConsult();
+
+            try
+            {
+                var user = JsonConvert.DeserializeObject<User>(User.Identity.Name);
+                var transactions = _transactionRepository.GetTransactionByMonthAndUser(DateTime.Now.Month, user.Id);
+                transactionViewModel.ResultConsults = new List<TransactionResultConsult>();
+
+                foreach (var item in transactions)
+                {
+                    transactionViewModel.ResultConsults.Add(
+                        new TransactionResultConsult()
+                        {
+                            Id = item.Id,
+                            Name = item.Name,
+                            Category = item.Category.Name,
+                            Data = item.DataTransaction,
+                            Type = item.Type.ToString(),
+                            Value = item.Value.ToString()
+                        });
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["MessageError"] = ex.Message;
+            }
+            return View(transactionViewModel);
         }
 
         [HttpPost]
@@ -117,7 +144,7 @@ namespace FinancasApp.Presentation.Controllers
                 {
                     var transaction = _transactionRepository.GetById(viewModel.Id);
 
-                    if(transaction != null)
+                    if (transaction != null)
                     {
                         transaction.Value = viewModel.Value == null ? default(decimal) : decimal.Parse(viewModel.Value);
                         transaction.CategoryId = viewModel.CategoryId.Value;

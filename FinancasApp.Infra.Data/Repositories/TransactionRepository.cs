@@ -29,5 +29,16 @@ namespace FinancasApp.Infra.Data.Repositories
                     .ToList();
             return transaction;
         }
+
+        public List<Transaction> GetTransactionByMonthAndUser(int month, Guid userId)
+        {
+            var transaction = _dataContext.Set<Transaction>()
+                .Include(x => x.Category)
+                    .Where(x => x.DataTransaction.Month == month && x.UserId == userId)
+                    .OrderBy(x => x.DataTransaction)
+                    .ToList();
+
+            return transaction;
+        }
     }
 }
