@@ -195,17 +195,6 @@ namespace FinancasApp.Presentation.Controllers
         [HttpPost]
         public IActionResult Register(TransactionRegister viewModel)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    var errors = ModelState.Values.SelectMany(v => v.Errors)
-            //                                   .Select(e => e.ErrorMessage)
-            //                                   .ToList();
-            //    foreach (var error in errors)
-            //    {
-            //        // Log erros para depuração              
-            //    }
-            //}
-
             if (ModelState.IsValid)
             {
                 try

@@ -89,7 +89,6 @@ namespace FinancasApp.Presentation.Controllers
 
                     _userService.CreateAccount(user);
 
-                    TempData["MessageSuccess"] = "Conta criada com sucesso!";
                     return RedirectToAction("Login", "Account");
                 }
                 catch (Exception ex)
