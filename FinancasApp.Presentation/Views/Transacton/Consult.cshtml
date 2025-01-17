@@ -11,7 +11,7 @@
 {
     <div class="row mb-2">
         <div class="col-md-3">
-            @Html.TextBoxFor(x => x.InitialDate, new { @class = "form-control mb-4", @type = "date"})
+            @Html.TextBoxFor(x => x.InitialDate, "{0:yyyy-MM-dd}",new { @class = "form-control mb-4", @type = "date"})
 
             <span class="text-danger">
                 @Html.ValidationMessageFor(x => x.InitialDate)
@@ -19,7 +19,7 @@
         </div>
 
         <div class="col-md-3">
-            @Html.TextBoxFor(x => x.FinalDate, new { @class = "form-control mb-4", @type = "date" })
+            @Html.TextBoxFor(x => x.FinalDate,"{0:yyyy-MM-dd}", new { @class = "form-control mb-4", @type = "date" })
 
             <span class="text-danger">
                 @Html.ValidationMessageFor(x => x.FinalDate)
@@ -38,8 +38,8 @@
         <table id="consultTransaction" class="table table-sm table-hover table-striped">
             <thead>
                 <tr>
-                    <th>Nome</th>
                     <th>Data</th>
+                    <th>Nome</th>
                     <th>Valor</th>
                     <th>Categoria</th>
                     <th>Tipo</th>
@@ -51,8 +51,8 @@
                 @foreach(var item in Model.ResultConsults)
                 {
                     <tr>
-                        <td>@item.Name</td>
                         <td>@item.Data.Value.ToString("dd/MM/yyyy")</td>
+                        <td>@item.Name</td>
                         <td>@(decimal.Parse(item.Value).ToString("c"))</td>
                         <td>@item.Category</td>
                         <td>@item.Type</td>

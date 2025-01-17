@@ -1,7 +1,5 @@
 ﻿@model List<FinancasApp.Presentation.Models.Category.CategoryConsult>
 
-
-
 <table id="consultCategory" class="table table-hover table-bordered table-striped">
     <thead class="table-light">
         <tr>
@@ -13,10 +11,10 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td><strong>@item.Name</strong></td>
+                <td>@item.Name</td>
                 <td style="text-align: right;">
-                    <a class="btn btn-primary btn-sm" href="/Category/Edit?idCategory=@item.Id">Editar</a>
-                    <a class="btn btn-danger btn-sm" href="/Category/Delete?idCategory=@item.Id" onclick="return confirm('Deseja realmente excluir esta categoria?')">Excluir</a>
+                    <a class="btn btn-outline-primary btn-sm" href="/Category/Edit?idCategory=@item.Id">Editar</a>
+                    <a class="btn btn-outline-danger btn-sm" href="/Category/Delete?idCategory=@item.Id" onclick="return confirm('Deseja realmente excluir esta categoria?')">Excluir</a>
                 </td>
             </tr>
         }
@@ -33,16 +31,14 @@
     <link href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" rel="stylesheet">
 
     <style>
-        /* Define larguras iguais para as colunas */
         .table th, .table td {
-            width: 50%; /* Divide a largura igualmente entre as colunas */
-            vertical-align: middle; /* Centraliza o conteúdo verticalmente */
-            padding: 12px; /* Espaçamento interno uniforme */
+            width: 50%; 
+            vertical-align: middle; 
+            padding: 12px; 
         }
 
-        /* Estiliza os botões */
         .btn {
-            margin-left: 5px; /* Espaçamento entre botões */
+            margin-left: 5px; 
         }
 
 
