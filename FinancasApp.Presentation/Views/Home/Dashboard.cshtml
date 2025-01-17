@@ -1,7 +1,7 @@
 ﻿<div>
     <h5>Dashboard Principal</h5>
 
-    <div class="row mt-3">
+    <div class="row mt-3 pieBarShowHide">
         <div class="col-md-3 mb-4">
             <input type="date" id="initDate" class="form-control" />
         </div>
@@ -18,13 +18,19 @@
     </div>
 </div>
 
-<div class="row mb-2">
+<div class="row mb-2 pieBarShowHide">
     <div class="col-md-6">
         <div id="pie-chart"></div>
     </div>
 
     <div class="col-md-6">
         <div id="bar-chart"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="messageGraficShowHide"></div>
     </div>
 </div>
 
@@ -53,7 +59,7 @@
             });
         });
 
-        function formateDate(date){
+        function formateDate(date) {
             var day = String(date.getDate()).padStart(2, '0');
             var month = String(date.getMonth() + 1).padStart(2, '0');
             var year = date.getFullYear();
@@ -73,54 +79,67 @@
                     finalDate
                 },
                 success: function (data) {
-                    var dataTransactionsForTypes = []
-                    var dataChartBarX = []
-                    var dataChartBarY = []
 
-                    for (var i = 0; i < data.totalForTypes.length; i++) {
+                    $('#pie-chart').empty();
+                    $('#bar-chart').empty();
 
-                        var item = data.totalForTypes[i];
-                        dataTransactionsForTypes.push([item.type, item.total])
+
+                    if (data.totalForTypes.length > 0 || data.totalForCategories.length > 0) {
+                        var dataTransactionsForTypes = []
+                        var dataChartBarX = []
+                        var dataChartBarY = []
+
+                        for (var i = 0; i < data.totalForTypes.length; i++) {
+
+                            var item = data.totalForTypes[i];
+                            dataTransactionsForTypes.push([item.type, item.total])
+                        }
+
+                        for (var i = 0; i < data.totalForCategories.length; i++) {
+
+                            var item = data.totalForCategories[i];
+                            dataChartBarX.push(item.categoryName)
+                            dataChartBarY.push(item.total)
+                        }
+
+                        // Gráfico de Pizza
+                        Highcharts.chart('pie-chart', {
+                            chart: {
+                                type: 'pie'
+                            },
+                            title: {
+                                text: 'Total de Receitas e Despesas'
+                            },
+                            series: [{
+                                name: 'Total R$',
+                                colorByPoint: true,
+                                data: dataTransactionsForTypes
+                            }]
+                        });
+
+                        // Gráfico de Barras
+                        Highcharts.chart('bar-chart', {
+                            chart: {
+                                type: 'bar'
+                            },
+                            title: {
+                                text: 'Total de Despesas por Categoria'
+                            },
+                            xAxis: {
+                                categories: dataChartBarX
+                            },
+                            series: [{
+                                name: 'Dados',
+                                data: dataChartBarY
+                            }]
+                        });
+                    }
+                    else {
+                        $(".pieBarShowHide").hide();
+
+                        $('.messageGraficShowHide').html('<p class="text-center mt-4"><strong>Não há contas cadastradas.</strong></p>');
                     }
 
-                    for (var i = 0; i < data.totalForCategories.length; i++) {
-
-                        var item = data.totalForCategories[i];
-                        dataChartBarX.push(item.categoryName)
-                        dataChartBarY.push(item.total)
-                    }
-
-                    // Gráfico de Pizza
-                    Highcharts.chart('pie-chart', {
-                        chart: {
-                            type: 'pie'
-                        },
-                        title: {
-                            text: 'Total de Receitas e Despesas'
-                        },
-                        series: [{
-                            name: 'Total R$',
-                            colorByPoint: true,
-                            data: dataTransactionsForTypes
-                        }]
-                    });
-
-                    // Gráfico de Barras
-                    Highcharts.chart('bar-chart', {
-                        chart: {
-                            type: 'bar'
-                        },
-                        title: {
-                            text: 'Total de Despesas por Categoria'
-                        },
-                        xAxis: {
-                            categories: dataChartBarX
-                        },
-                        series: [{
-                            name: 'Dados',
-                            data: dataChartBarY
-                        }]
-                    });
                 },
                 error: function (e) {
                     console.log(e)
